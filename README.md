@@ -1,3 +1,31 @@
+# react 学习
+
+## 直接说明吧
+
+1. 目录没什么好说明的，自己可以看
+
+2. 使用create-react-app之前请一定先对react的知识进行了解，至少要有写过react代码，或者有维护过react项目的经验否则请您先去熟悉react的相关语法
+
+3. `npm i create-react-app -g`
+
+4. `npm run eject | yarn eject` (npm没什么好说的，如果使用yarn请先确定您的电脑上面安装了yarn)
+
+5. `npm start | yarn start`
+
+6. `npm run build` (建议用完脚手架之后看一下webpack的配置是怎么写的，再之后的开发中需要修改打包相关的信息的时候会快很多)
+
+## 相关文档
+
+1. [react](https://react.docschina.org/)
+
+2. [create-react-app的git地址](https://github.com/facebook/create-react-app)
+
+3. [redux的git地址](https://github.com/reduxjs/redux)
+
+4. [react-router中文文档](http://react-guide.github.io/react-router-cn/)
+
+## 下面的是脚手架自带的readme，搂一眼
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
