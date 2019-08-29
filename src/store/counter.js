@@ -3,14 +3,14 @@ const ADD = 'add-num'
 const REDUCE = 'resuce-num'
 
 // reduxer state的层面
-export function counter(state = 0, action) {
+export function counter(state = 10, action) {
   switch (action.type) {
     case ADD:
       return ++state
     case REDUCE :
       return --state
     default:
-      return 10
+      return state
   }
 }
 // action的层面,用diapatch去触发

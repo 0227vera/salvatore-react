@@ -22,19 +22,27 @@
 
 3. [redux的git地址](https://github.com/reduxjs/redux)
 
-  `npm i redux -S`
+`npm i redux -S`
 
-  `npm i redux-thunk -S` 处理异步问题
+`npm i redux-thunk -S` 处理异步问题
 
-  `npm i react-redux -S` 根据接口来使用store
+`npm i react-redux -S` 根据接口来使用store
 
-  使用:
+使用:
 
-      (一) Provider: 组件再应用的最外层,传入store即可,只用一次
+(一) Provider: 组件再应用的最外层,传入store即可,只用一次
 
-      (二) Connect:负责从外部获取组件需要的参数 `npm install babel-plugin-transform-decorators-legacy -D` 装饰器方便connect的书写,在package里面添加`"plugins": [ ["@babel/plugin-proposal-decorators", { "legacy": true }]]`(babel的配置)
+(二) Connect:负责从外部获取组件需要的参数 `npm install babel-plugin-transform-decorators-legacy -D` 装饰器方便connect的书写,在package里面添加`"plugins": [ ["@babel/plugin-proposal-decorators", { "legacy": true }]]`(babel的配置)
 
 4. [react-router中文文档](http://react-guide.github.io/react-router-cn/)
+
+react-router4核心概念: 动态路由,Route,Link,Switch
+
+`npm i react-router-dom -S`(dom和native相对应,web和H5)
+
+BrowserRouter(还有hashRouter),包裹整个应用
+Router,路由对应渲染的组件,可嵌套
+Link,跳转使用
 
 ## node相关的文档和包(server文件夹)
 
