@@ -30,9 +30,9 @@
 
   使用:
 
-      * Provider: 组件再应用的最外层,传入store即可,只用一次
-      
-      * Connect:负责从外部获取组件需要的参数 `npm install babel-plugin-transform-decorators-legacy -D` 装饰器方便connect的书写,在package里面添加`"plugins": [ ["@babel/plugin-proposal-decorators", { "legacy": true }]]`(babel的配置)
+      (一) Provider: 组件再应用的最外层,传入store即可,只用一次
+
+      (二) Connect:负责从外部获取组件需要的参数 `npm install babel-plugin-transform-decorators-legacy -D` 装饰器方便connect的书写,在package里面添加`"plugins": [ ["@babel/plugin-proposal-decorators", { "legacy": true }]]`(babel的配置)
 
 4. [react-router中文文档](http://react-guide.github.io/react-router-cn/)
 
