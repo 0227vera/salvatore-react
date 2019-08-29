@@ -22,7 +22,70 @@
 
 3. [redux的git地址](https://github.com/reduxjs/redux)
 
+  `npm i redux -S`
+  `npm i redux-thunk -S` 处理异步问题
+  `npm i react-redux -S` 根据接口来使用store
+    使用:
+      * Provider: 组件再应用的最外层,传入store即可,只用一次
+      * Connect:负责从外部获取组件需要的参数 `npm install babel-plugin-transform-decorators-legacy -D` 装饰器方便connect的书写,在package里面添加`"plugins": [ ["@babel/plugin-proposal-decorators", { "legacy": true }]]`(babel的配置)
+
 4. [react-router中文文档](http://react-guide.github.io/react-router-cn/)
+
+## node相关的文档和包(server文件夹)
+
+1. `npm i -g nodemon`(node修改代码，不需要重启项目)
+
+2. `npm i -g mongoose -S`(node连接mongodb)
+
+## mongodb
+
+1. [mongodb官网](https://www.mongodb.com)
+
+## vue和react快速模板生成
+
+1. vue
+
+  * `Ctrl + Shift + P` --> `snippets` ---> 点击`首选项：配置用户代码片段`----> 选择`vue.json`
+  *  复制下面的json
+
+```json
+{
+  "Print to vue": {
+    "prefix": "vue",
+    "body": [
+      "<template>",
+      "  <div class=\"$TM_FILENAME_BASE\">\n",
+      "  </div>",
+      "</template>\n",
+      "<script>",
+      "export default {",
+      "  name: '$TM_FILENAME_BASE',",
+      "  data () {",
+      "    return {\n",
+      "    }",
+      "  },",
+      "  mounted () {",
+      "  },",
+      "  methods: {\n",
+      "  },",
+      "  components: {\n",
+      "  }",
+      "}",
+      "</script>\n",
+      "<style lang=\"scss\" scoped>\n",
+      "</style>",
+      "$2"
+    ],
+    "description": "快速构建vue各个基本块"
+  }
+}
+```
+
+2. react
+
+  * 安装vdcode插件`ES7 React/Redux/GraphQL/React-Native snippets`
+  * rcc---->有状态组件代码块
+  * rfc---->无状态组件代码块
 
 ## 下面的是脚手架自带的readme，搂一眼
 
