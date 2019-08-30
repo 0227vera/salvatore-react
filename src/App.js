@@ -39,11 +39,12 @@ import thunk from 'redux-thunk';
 
 import {Provider} from 'react-redux'
 
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Error from './page/Error'
 import Login from './page/login'
 import Content from './page/content'
+import services from './services'
 // 创建store
 const store =  createStore(reducers, compose(
   // 使用中间键
@@ -53,6 +54,7 @@ const store =  createStore(reducers, compose(
 
 export default class App extends React.Component {
   render() {
+    console.log(services)
     return (
       <Provider store={store}>
         <BrowserRouter>
@@ -62,7 +64,6 @@ export default class App extends React.Component {
               <Route component={Error}></Route>
             </Switch>
         </BrowserRouter>
-        
       </Provider>
     )
   }
