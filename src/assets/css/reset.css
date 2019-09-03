@@ -1,0 +1,128 @@
+/*reset css start*/
+* {
+	margin:0;
+	padding:0;
+  -webkit-tap-highlight-color: rgba(255,0,0,0);
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+html,body,#app{
+	height: 100%;
+}
+body {
+	font: 14px 'Microsoft YaHei', Verdana, sans-serif, 'FZY3JW--GB1-0','android-font','Helvetica';
+	background-color: #f2f2f2;
+	-webkit-text-size-adjust:none;
+}
+*:focus{
+  outline: 0;
+}
+input,select,textarea {
+	font-size:100%;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #999; }
+input::placeholder, textarea:-moz-placeholder { color: #999;}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {color: #999;}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+	display: block;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	table-layout: fixed;
+}
+fieldset,img {
+	border:0 none;
+}
+iframe {
+	display:block;
+}
+abbr,acronym {
+	border:none;
+	font-variant:normal;
+}
+del {
+	text-decoration:line-through;
+}
+address,caption,cite,code,dfn,em,th,var,i {
+	font-style:normal;
+	font-weight:500;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:500;
+}
+q:before,q:after {
+	content:'';
+}
+sub, sup {
+	font-size:75%;
+	line-height:0;
+	position:relative;
+	vertical-align:baseline;
+}
+sup {
+	top:-0.5em;
+}
+sub {
+	bottom:-0.25em;
+}
+ins,a {
+	text-decoration:none;
+}
+button{
+	outline:none;
+	cursor: pointer;
+}
+.clearfix:before,.clearfix:after {
+	content:"";
+	display:table;
+}
+.clearfix:after {
+	clear:both;
+	overflow:hidden;
+}
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+.hide {
+	display: none;
+}
+.item {
+	white-space: nowrap;
+}
+.vue-1px { border: 1px solid #f1f1f1 }
+.vue-1px-b { border-bottom: 1px solid #f1f1f1 }
+.vue-1px-t { border-top: 1px solid #f1f1f1 }
+.vue-1px-l { border-left: 1px solid #f1f1f1 }
+.vue-1px-r { border-right: 1px solid #f1f1f1 }
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .vue-1px{border:0.5px solid #f1f1f1}
+  .vue-1px-b { border-bottom: 0.5px solid #f1f1f1 }
+  .vue-1px-t { border-top: 0.5px solid #f1f1f1 }
+  .vue-1px-l { border-left: 0.5px solid #f1f1f1 }
+  .vue-1px-r { border-right: 0.5px solid #f1f1f1 }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  .vue-1px{border:0.333333px solid #f1f1f1}
+  .vue-1px-b { border-bottom: 0.333333px solid #f1f1f1 }
+  .vue-1px-t { border-top: 0.333333px solid #f1f1f1 }
+  .vue-1px-l { border-left: 0.333333px solid #f1f1f1 }
+  .vue-1px-r { border-right: 0.333333px solid #f1f1f1 }
+}
+*{
+	font-family: FZYaSongS-R-GB,PingFang SC,miui,system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif;
+  }

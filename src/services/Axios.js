@@ -4,6 +4,8 @@ import axios from 'axios'
 // 在请求的时候参数肯定是用json格式书写是最舒服的，但是请求的时候是字符串，所以，需要做一下序列化
 import qs from 'qs'
 
+import { Toast } from 'antd-mobile'
+
 const reg = /^[\u0391-\uFFE5%]+$/
 // 在序列化的时候肯定要使用的请求时候的拦截器
 axios.interceptors.request.use(request => {
@@ -36,6 +38,7 @@ axios.interceptors.request.use(request => {
       params['nocha'] = new Date().getTime()
     }
   }
+  Toast.loading('加载中……', 0)
   return request
 })
 
@@ -43,6 +46,7 @@ axios.interceptors.request.use(request => {
 // 如果在接收到数据之后有什么特殊的处理，需要在相应的时候使用一下拦截器
 
 axios.interceptors.response.use(response => {
+  Toast.hide()
   return response
 })
 
