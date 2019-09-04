@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from '@/page/Login/index'
 import Register from '@/page/Register/index'
 import AuthRoute from '@/page/authRoute/index'
+import Bossinfo from '@/page/bossInfo/index'
 import '@/assets/css/reset.css'
 import '@/assets/css/common.scss'
 
@@ -44,6 +45,7 @@ class App extends React.Component {
             <Switch>
               <Route path="/login" component={Login}></Route>
               <Route path="/register" component={Register}></Route>
+              <Route path="/bossinfo" component={Bossinfo}></Route>
             </Switch>
           </div>
         </BrowserRouter>
