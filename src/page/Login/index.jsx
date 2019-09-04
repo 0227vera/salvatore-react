@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { Redirect } from 'react-router-dom'
-import { login_auth} from '@/store/auth'
+import { Redirect } from 'react-router-dom'
 
 import Logo from '@/components/logo/index'
 import { List, InputItem, WingBlank,WhiteSpace, Button } from 'antd-mobile';
 
+import {login} from '@/store/auth'
+
 
 @connect(
   state => state.auth,
-  {login_auth}
+  {login}
 )
-class login extends Component {
+class loginPage extends Component {
   constructor(props){
     super(props)
     this.onChangeName = this.onChangeName.bind(this)
@@ -32,9 +33,14 @@ class login extends Component {
   register() {
     this.props.history.push('/register')
   }
+  login(){
+    console.log(this.state)
+    this.props.login(this.state)
+  }
   render() {
     return (
       <div className="center">
+        {this.props.redirectTo ? <Redirect to={this.props.redirectTo}></Redirect> : null}
         <Logo />
         <WhiteSpace size={'xl'}></WhiteSpace>
         <WingBlank>
@@ -55,7 +61,7 @@ class login extends Component {
             >密码</InputItem>
           </List>
           <WhiteSpace size={'xl'}></WhiteSpace>
-          <Button type="primary">登陆</Button>
+          <Button type="primary" onClick={this.login.bind(this)}>登陆</Button>
           <WhiteSpace size={'xl'}></WhiteSpace>
           <span className="app-jumpUrl" onClick={this.register}>没有账号，立即注册</span>
         </WingBlank>
@@ -63,4 +69,4 @@ class login extends Component {
     )
   }
 }
-export default login
+export default loginPage

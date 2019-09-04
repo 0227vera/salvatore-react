@@ -50,20 +50,19 @@ axios.interceptors.response.use(response => {
   return response
 })
 
-const CONTWXT = 'test' // 上下文
-
+const CONTWXT = '/react_app' // 上下文
+axios.defaults.baseURL = CONTWXT
 // 在平常的请求中get请求比较多，method默认给定get请求，baseUrl防止一个前端项目中会有对各后端的项目的情况，所以给定默认的一个上下文
-export default function Axios ({method = 'get', url, params, data, baseUrl = CONTWXT}) {
+export default function Axios ({method = 'get', url, params, data}) {
   return new Promise((resolve, reject) => {
     axios({
       method,
       url,
       params,
-      data,
-      baseUrl
+      data
     })
     .then(res => {
-      resolve(res)
+      res.data.success ? resolve(res.data.data) : reject(res.data)
     },err => {
       reject(err)
     })

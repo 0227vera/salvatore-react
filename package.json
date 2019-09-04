@@ -15,8 +15,10 @@
     "babel-loader": "8.0.6",
     "babel-plugin-named-asset-import": "^0.3.3",
     "babel-preset-react-app": "^9.0.1",
+    "body-parser": "^1.19.0",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "cookie-parser": "^1.4.4",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
@@ -61,13 +63,14 @@
     "terser-webpack-plugin": "1.4.1",
     "ts-pnp": "1.1.2",
     "url-loader": "2.1.0",
+    "utility": "^1.16.1",
     "webpack": "4.39.1",
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.0.4",
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "nodeServer": "nodemon server/server.js",
+    "nodeServer": "nodemon server/index.js",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
@@ -155,6 +158,7 @@
       ]
     ]
   },
+  "proxy": "http://localhost:3227",
   "devDependencies": {
     "babel-plugin-import": "^1.12.1",
     "babel-plugin-transform-class-properties": "^6.24.1",

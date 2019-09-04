@@ -1,41 +1,53 @@
 // 在App.js中做相关的一级路由跳转 和初始化store文件
 import React from 'react';
-import { createStore, applyMiddleware, compose } from 'redux'
-// import { counter, ADD_NUMBER, REDUCE_NUMBER, ADD_NUMBER_ASYNC } from './redux'
-import  reducers  from './store/reducers'
-// 中间键
-import thunk from 'redux-thunk';
 
-import {Provider} from 'react-redux'
-
+import { connect } from 'react-redux'
+import {closeMsg} from '@/store/auth'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
-import Error from '@/page/Error/index'
 import Login from '@/page/Login/index'
 import Register from '@/page/Register/index'
+import AuthRoute from '@/page/authRoute/index'
 import '@/assets/css/reset.css'
 import '@/assets/css/common.scss'
-// 创建store
-const store =  createStore(reducers, compose(
-  // 使用中间键
-  applyMiddleware(thunk),
-  window.devToolsExtension ? window.devToolsExtension : f => f
-))
 
-export default class App extends React.Component {
+@connect(
+  state => state.auth,
+  {closeMsg}
+)
+class App extends React.Component {
+  constructor(props){
+    super(props)
+    this.closeMsg = this.closeMsg.bind(this)
+    this.state = {
+      timer:null
+    }
+  }
+  closeMsg(){
+    this.props.closeMsg()
+  }
   render() {
+    if (this.props.msg_show) {
+      clearTimeout(this.state.timer)
+      this.timer = setTimeout(() => {
+        this.closeMsg()
+      }, 3 * 1000);
+      // 平均3字/s
+    }
     return (
-      <Provider store={store}>
         <BrowserRouter>
           <div className="app">
+            <p 
+            onClick={this.closeMsg}
+            className={[`app-notice-${this.props.msg_type}`, `app-notice-${this.props.msg_show}`, "app-notice" ].join(' ')}
+            >{this.props.msg}</p>
+            <AuthRoute></AuthRoute>
             <Switch>
               <Route path="/login" component={Login}></Route>
               <Route path="/register" component={Register}></Route>
-              <Route component={Error}></Route>
             </Switch>
           </div>
         </BrowserRouter>
-      </Provider>
     )
   }
 }
+export default App
