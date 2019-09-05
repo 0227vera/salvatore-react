@@ -73,6 +73,44 @@ code {
     margin-top: 20px;
     width: 100%;
     overflow: hidden;
-    // box-sizing: border-box;
+  }
+}
+header{
+  width: 100%;
+  height: 45px;
+}
+footer{
+  width: 100%;
+  height: 50px;
+}
+main{
+  flex: 1;
+  overflow-x: hidden;
+}
+.detail{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.card-list-item{
+  p{
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  ul{
+    width: 100%;
+    height: inherit;
+    background: #fbfbfb;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    li{
+      font-size: 16px;
+      margin-top: 5px;
+      &:nth-child(1){
+        margin: 0;
+      }
+    }
   }
 }

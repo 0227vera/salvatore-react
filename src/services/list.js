@@ -2,10 +2,11 @@
 import Axios from './Axios'
 
 export default {
-  getList () {
+  getList (params) {
     return Axios ({
-      url:'/list',
-      name:'列表页面数据获取'
+      url:'/user/list',
+      name:'列表页面数据获取',
+      params
     })
   }
 }

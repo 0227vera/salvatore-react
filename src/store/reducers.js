@@ -2,4 +2,6 @@
 import { combineReducers } from 'redux'
 import { auth } from './auth'
 import { notice } from './notice'
-export default combineReducers({ auth, notice })
+import { list } from './list'
+
+export default combineReducers({ auth, notice,list })

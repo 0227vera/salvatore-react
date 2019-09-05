@@ -24,6 +24,14 @@ userRouter.get('/delete', (req,res) => {
   })
 })
 
+// list数据获取
+userRouter.get('/list',(req,res) => {
+  let { userType } = req.query
+  User.find({userType},(err,doc) => {
+    if (err) return res.json({success:false,msg:'数据库错误'})
+    return res.json({success:true,data:doc})
+  })
+})
 
 // 登陆
 userRouter.post('/login', (req,res) => {

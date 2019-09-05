@@ -8,7 +8,8 @@ import Login from '@/page/Login/index'
 import Register from '@/page/Register/index'
 import AuthRoute from '@/page/authRoute/index'
 import Bossinfo from '@/page/bossInfo/index'
-import WorkerInfo from '@/page/workerInfo/index.jsx'
+import WorkerInfo from '@/page/workerInfo/index'
+import DashBorder from '@/page/dashBorder/index'
 import '@/assets/css/reset.css'
 import '@/assets/css/common.scss'
 
@@ -48,6 +49,7 @@ class App extends React.Component {
               <Route path="/register" component={Register}></Route>
               <Route path="/bossinfo" component={Bossinfo}></Route>
               <Route path="/workerinfo" component={WorkerInfo}></Route>
+              <Route component={DashBorder}></Route>
             </Switch>
           </div>
         </BrowserRouter>

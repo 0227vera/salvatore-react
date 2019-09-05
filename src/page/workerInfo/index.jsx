@@ -73,7 +73,7 @@ class index extends Component {
             </List.Item>
             <InputItem
               placeholder="请输入职位名称"
-              value={this.state.money}
+              value={this.state.title}
               onChange={v=>this.onChange('money',v)}
               clear
             >
@@ -81,7 +81,7 @@ class index extends Component {
             </InputItem>
             <InputItem
               placeholder="请输入期望薪资（K）"
-              value={this.state.title}
+              value={this.state.money}
               onChange={v=>this.onChange('title',v)}
               clear
             >
