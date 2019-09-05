@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {Grid,WingBlank} from 'antd-mobile'
+import {Grid} from 'antd-mobile'
+import PropTypes from 'prop-types'
 let data = Array.from(new Array(48)).map((item,index) => ({icon:require(`../../assets/img/headImg/icon${index}.png`),text:index}))
 export default class index extends Component {
   constructor(props){
@@ -27,16 +28,10 @@ export default class index extends Component {
         carouselMaxRow={3}
         onClick={this.onClick}
         />
-        <WingBlank>        
-        {
-          this.state.active > -1 ? 
-          <div className="headImg-select">
-            <span>选中的头像是：</span><img src={this.state.img} alt=""/>
-          </div> : 
-          <p className="headImg-select">请选择头像</p>
-        }
-        </WingBlank>
       </div>
     )
   }
+}
+index.propTypes = {
+  selectHeadImg:PropTypes.func
 }

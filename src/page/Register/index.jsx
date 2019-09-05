@@ -4,10 +4,11 @@ import { Redirect } from 'react-router-dom'
 import { List, InputItem, WingBlank, WhiteSpace, Button,Toast,Radio } from 'antd-mobile';
 import { connect } from 'react-redux'
 import { register } from '@/store/auth'
+import { errorMsg } from '@/store/notice'
 
 @connect(
   state => state.auth,
-  {register}
+  {register,errorMsg}
 )
 class Index extends Component {
   constructor(props){
@@ -27,6 +28,18 @@ class Index extends Component {
     this.props.history.push('/login')
   }
   register(){
+    if (!this.state.userName || !this.state.userPass) {
+      this.props.errorMsg({msg:'请填写用户名和密码',msg_type:'warning'})
+      return
+    }
+    if (this.state.userPass !== this.state.userPassAgain)  {
+      this.props.errorMsg({msg:'密码和确认密码不同',msg_type:'warning'})
+      return
+    }
+    if (!/^(?:(?:\+|00)86)?1[3-9]\d{9}$/.test(this.state.phone.replace(/\s/g, '')))  {
+      this.props.errorMsg({msg:'请输入正确的电话号码',msg_type:'warning'})
+      return
+    }
     this.props.register(this.state)
   }
   onChangeForm(key,value){

@@ -32,7 +32,7 @@ userRouter.post('/login', (req,res) => {
   User.findOne({userName,userPass:getComplexMd5(userPass)},{userPass:0}, (err,doc) => {
     if (err) return res.json({success:false,msg:'数据查询出错'})
     if (doc) return res.json({success:true,data:doc})
-    // 存储cookie记录登陆装填
+    // 存储cookie记录登陆状态
     res.cookie('userid', doc._id)
     return res.json({success:false,msg:'用户不存在或者密码错误'})
   })
@@ -53,4 +53,26 @@ userRouter.post('/register', (req,res) => {
     })
   })
 })
+
+// 数据更新
+userRouter.post('/update', (req,res) => {
+  let userid = req.cookies.userid
+  if (!userid) {
+    return res.json({success:false,msg:'目前不是登陆状态'})
+  }
+  const body = req.body
+  User.findByIdAndUpdate(userid,body,(err,doc) => {
+    if (err) {
+      return res.json({success:false,msg:'数据库操作失败'})
+    }
+    return res.json({success:true,data:Object.assign({},{
+        userName:doc.userName,
+        userType:doc.userType
+      },
+        body
+        )
+    })
+  })
+})
+
 module.exports = userRouter

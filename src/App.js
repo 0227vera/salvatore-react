@@ -2,17 +2,18 @@
 import React from 'react';
 
 import { connect } from 'react-redux'
-import {closeMsg} from '@/store/auth'
+import {closeMsg} from '@/store/notice'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from '@/page/Login/index'
 import Register from '@/page/Register/index'
 import AuthRoute from '@/page/authRoute/index'
 import Bossinfo from '@/page/bossInfo/index'
+import WorkerInfo from '@/page/workerInfo/index.jsx'
 import '@/assets/css/reset.css'
 import '@/assets/css/common.scss'
 
 @connect(
-  state => state.auth,
+  state => state.notice,
   {closeMsg}
 )
 class App extends React.Component {
@@ -46,6 +47,7 @@ class App extends React.Component {
               <Route path="/login" component={Login}></Route>
               <Route path="/register" component={Register}></Route>
               <Route path="/bossinfo" component={Bossinfo}></Route>
+              <Route path="/workerinfo" component={WorkerInfo}></Route>
             </Switch>
           </div>
         </BrowserRouter>

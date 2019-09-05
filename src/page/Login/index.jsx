@@ -6,11 +6,12 @@ import Logo from '@/components/logo/index'
 import { List, InputItem, WingBlank,WhiteSpace, Button } from 'antd-mobile';
 
 import {login} from '@/store/auth'
+import {errorMsg} from '@/store/notice'
 
 
 @connect(
   state => state.auth,
-  {login}
+  {login,errorMsg}
 )
 class loginPage extends Component {
   constructor(props){
@@ -34,7 +35,10 @@ class loginPage extends Component {
     this.props.history.push('/register')
   }
   login(){
-    console.log(this.state)
+    if (!this.state.userName || !this.state.userPass) {
+      this.props.errorMsg({msg:'请填写用户名和密码', msg_type:'warning'})
+      return
+    }
     this.props.login(this.state)
   }
   render() {

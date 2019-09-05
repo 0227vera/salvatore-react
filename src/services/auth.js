@@ -24,5 +24,13 @@ export default {
       name:'用户登陆',
       data
     })
+  },
+  update(data){
+    return Axios({
+      method:'post',
+      url:'/user/update',
+      name:'用户的数据完善',
+      data
+    })
   }
 }

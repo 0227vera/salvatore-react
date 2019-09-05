@@ -73,20 +73,6 @@ code {
     margin-top: 20px;
     width: 100%;
     overflow: hidden;
-  }
-}
-.headImg-select{
-  width: 100%;
-  line-height: 50px;
-  height: 50px;
-  overflow: hidden;
-  img{
-    width: 40px;
-    height: 40px;
-    // margin-top
-    vertical-align: middle;
-  }
-  span{
-    vertical-align: middle;
+    // box-sizing: border-box;
   }
 }

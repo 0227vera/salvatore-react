@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import SelectImg from "@/components/select-img/index"
 import { NavBar, WingBlank, WhiteSpace, List, InputItem, TextareaItem, Button } from 'antd-mobile'
-import {errorMsg} from '@/store/notice'
+import { errorMsg } from '@/store/notice'
 import { update } from '@/store/auth'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import vai from '@/utils/vai'
 
 @connect(
@@ -21,8 +21,7 @@ class index extends Component {
     showImg:'',
     headImg:'', // 头像信息
     desc:'', // 技能描述
-    title:'', // 职位名称
-    company:'', // 公司名称
+    title:'',
     money:'' // 薪资范围
   }
   selectHeadImg(item) {
@@ -41,17 +40,14 @@ class index extends Component {
       id:'headImg',
       msg:'请选择头像'
     },{
-      id:'company',
-      msg:'请填写公司名称'
-    },{
       id:'title',
-      msg:'请填写职位名称'
+      msg:'请输入职位名称'
     },{
       id:'money',
-      msg:'请填写薪资范围'
+      msg:'请输入期望薪资'
     },{
       id:'desc',
-      msg:'请填写技能描述'
+      msg:'请输入技术栈'
     }]
     let re = vai(arr,this.state)
     if (!re.pass) {
@@ -59,7 +55,6 @@ class index extends Component {
       return
     }
     this.props.update(this.state)
-    console.log(this.props)
   }
   render() {
     const path = this.props.location.pathname
@@ -77,31 +72,23 @@ class index extends Component {
               <img src={this.state.showImg} style={{marginLeft:20}} alt=""/>
             </List.Item>
             <InputItem
-              placeholder="请输入公司名称"
-              value={this.state.company}
-              onChange={v=>this.onChange('company',v)}
-              clear
-            >
-              公司名称
-            </InputItem>
-            <InputItem
-              placeholder="请输入所需职位"
-              value={this.state.title}
-              onChange={v=>this.onChange('title',v)}
+              placeholder="请输入职位名称"
+              value={this.state.money}
+              onChange={v=>this.onChange('money',v)}
               clear
             >
               职位名称
             </InputItem>
             <InputItem
-              placeholder="请输入薪资范围（K）"
-              value={this.state.money}
-              onChange={v=>this.onChange('money',v)}
+              placeholder="请输入期望薪资（K）"
+              value={this.state.title}
+              onChange={v=>this.onChange('title',v)}
               clear
             >
               薪资范围
             </InputItem>
             <TextareaItem
-            placeholder="请输入必要技能"
+            placeholder="请输入技术栈"
             value={this.state.desc}
             onChange={v=>this.onChange('desc',v)}
             clear
