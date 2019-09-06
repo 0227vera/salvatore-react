@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 export default class userList extends Component {
   render() {
     let data = this.props.data
-    console.log(data)
     return (
       <div>
         <WhiteSpace/>
@@ -21,11 +20,11 @@ export default class userList extends Component {
                     />
                     <Card.Body>
                     <div className="card-list-item">
-                      {item.userType === 'boss' ? <p>公司:{item.company}</p> : null}
-                      <p>电话:{item.phone}</p>
-                      <p>薪资:{item.money}</p>
-                      <p>个人简介:</p>
-                      <ul>{item.desc.split('\n').map(text => <li key={text}>{text}</li>)}</ul>
+                      {item.userType === 'boss' ? <p><span>公司:</span> <b>{item.company}</b> </p> : null}
+                      <p><span> 电话:</span> <b>{item.phone}</b> </p>
+                      <p><span>薪资:</span> <b>{item.money}</b> </p>
+                      <p><span> 个人简介:</span></p>
+                      <ul>{item.desc.split('\n').map((text,index) => <li key={text+index}>{text}</li>)}</ul>
                     </div>
                     </Card.Body>
                 </Card>

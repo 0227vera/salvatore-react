@@ -39,10 +39,10 @@ userRouter.post('/login', (req,res) => {
   // 返回前端数据过滤掉密码
   User.findOne({userName,userPass:getComplexMd5(userPass)},{userPass:0}, (err,doc) => {
     if (err) return res.json({success:false,msg:'数据查询出错'})
-    if (doc) return res.json({success:true,data:doc})
+    if (!doc) return res.json({success:false,msg:'用户不存在或者密码错误'})
     // 存储cookie记录登陆状态
     res.cookie('userid', doc._id)
-    return res.json({success:false,msg:'用户不存在或者密码错误'})
+    return res.json({success:true,data:doc})
   })
 })
 

@@ -40,6 +40,14 @@ react-router4核心概念: 动态路由,Route,Link,Switch
 
 `npm i react-router-dom -S`(dom和native相对应,web和H5)
 
+5. 组件
+
+高阶组件：（有点像vue中的mixins）
+
+(一) 属性代理
+
+(二) 反向继承
+
 BrowserRouter(还有hashRouter),包裹整个应用
 Router,路由对应渲染的组件,可嵌套
 Link,跳转使用

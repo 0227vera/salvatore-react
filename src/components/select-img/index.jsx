@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {Grid} from 'antd-mobile'
 import PropTypes from 'prop-types'
-let data = Array.from(new Array(48)).map((item,index) => ({icon:require(`../../assets/img/headImg/icon${index}.png`),text:index}))
 export default class index extends Component {
   constructor(props){
     super(props)
@@ -19,11 +18,12 @@ export default class index extends Component {
     this.props.selectHeadImg(item)
   }
   render() {
+    let data = Array.from(new Array(48)).map((item,index) => ({icon:require(`../../assets/img/headImg/icon${index}.png`),text:index}))
     return (
       <div>
         <Grid 
         data={data} 
-        activeStyle={true}
+        activeStyle={false}
         isCarousel
         carouselMaxRow={3}
         onClick={this.onClick}

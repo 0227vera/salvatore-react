@@ -52,7 +52,11 @@ class index extends Component {
           </NavBar>
         </header>
         <main>
-          <Route component={navList.find(item => item.path === this.props.location.pathname).component}></Route>  
+          {
+            navList.map(item => 
+              <Route key={item.path} path={item.path} component={item.component}></Route> 
+            )
+          }            
         </main>
         <Footer data={navList}></Footer>
       </div>

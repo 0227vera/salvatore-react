@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
   {userInfo}
 )
 class AuthRoute extends Component {
-  componentDidMount(){
+  componentWillMount(){
     const publicList = ['/login','/register']
     const currentRoute = this.props.location.pathname
     if (publicList.includes(currentRoute)) return

@@ -4,6 +4,7 @@ import {errorMsg} from './notice'
 
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const USER_INFO = 'USER_INFO'
+const LOGOUT = 'LOGOUT'
 const initState = {
   redirectTo:'',
   userName: '',
@@ -14,9 +15,11 @@ const initState = {
 export function auth (state = initState, action) {
   switch (action.type) {
     case AUTH_SUCCESS :
-      return { ...state,redirectTo:getRedirectPath(action.payload), ...action.payload }
+      return { ...state, redirectTo:getRedirectPath(action.payload), ...action.payload }
     case USER_INFO:
-      return { ...state,...action.payload }
+      return { ...state, ...action.payload }
+    case LOGOUT:
+      return {...initState,redirectTo:'/login'}
     default:
       return state
   }
@@ -67,4 +70,10 @@ export function update (data) {
       dispatch(errorMsg({msg:err.msg|| '请求出错',msg_type:'error'}))
     )
   }
+}
+
+// 注销
+
+export function logout() {
+  return {type:LOGOUT}
 }

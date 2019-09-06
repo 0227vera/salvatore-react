@@ -6,34 +6,21 @@ import {errorMsg} from '@/store/notice'
 import { update } from '@/store/auth'
 import {connect} from 'react-redux'
 import vai from '@/utils/vai'
+import formChange from '@/components/HOC/formChange'
 
 @connect(
   state => state.auth,
   {errorMsg,update}
 )
-
+@formChange
 class index extends Component {
-  constructor(props){
-    super(props)
-    this.selectHeadImg = this.selectHeadImg.bind(this)
-  }
   state = {
-    showImg:'',
-    headImg:'', // 头像信息
-    desc:'', // 技能描述
-    title:'', // 职位名称
-    company:'', // 公司名称
-    money:'' // 薪资范围
+    showImg:''
   }
   selectHeadImg(item) {
+    this.props.onChangeForm('headImg',item.text)
     this.setState({
-      headImg:item.text,
       showImg:item.icon
-    })
-  }
-  onChange(key,val) {
-    this.setState({
-      [key]:val
     })
   }
   save () {
@@ -53,13 +40,12 @@ class index extends Component {
       id:'desc',
       msg:'请填写技能描述'
     }]
-    let re = vai(arr,this.state)
+    let re = vai(arr,this.props.state)
     if (!re.pass) {
       this.props.errorMsg({msg:re.msg,msg_type:'warning'})
       return
     }
-    this.props.update(this.state)
-    console.log(this.props)
+    this.props.update(this.props.state)
   }
   render() {
     const path = this.props.location.pathname
@@ -68,7 +54,7 @@ class index extends Component {
       <div>
         {redirectTo && redirectTo !== path ? <Redirect to={redirectTo}></Redirect> : null}
         <NavBar mode="dark">信息完善</NavBar>
-        <SelectImg selectHeadImg={this.selectHeadImg}></SelectImg>
+        <SelectImg selectHeadImg={this.selectHeadImg.bind(this)}></SelectImg>
         <WhiteSpace/>
         <WingBlank>
           <List>
@@ -78,32 +64,32 @@ class index extends Component {
             </List.Item>
             <InputItem
               placeholder="请输入公司名称"
-              value={this.state.company}
-              onChange={v=>this.onChange('company',v)}
+              value={this.props.state.company}
+              onChange={v=>this.props.onChangeForm('company',v)}
               clear
             >
               公司名称
             </InputItem>
             <InputItem
               placeholder="请输入所需职位"
-              value={this.state.title}
-              onChange={v=>this.onChange('title',v)}
+              value={this.props.state.title}
+              onChange={v=>this.props.onChangeForm('title',v)}
               clear
             >
               职位名称
             </InputItem>
             <InputItem
               placeholder="请输入薪资范围（K）"
-              value={this.state.money}
-              onChange={v=>this.onChange('money',v)}
+              value={this.props.state.money}
+              onChange={v=>this.props.onChangeForm('money',v)}
               clear
             >
               薪资范围
             </InputItem>
             <TextareaItem
             placeholder="请输入必要技能"
-            value={this.state.desc}
-            onChange={v=>this.onChange('desc',v)}
+            value={this.props.state.desc}
+            onChange={v=>this.props.onChangeForm('desc',v)}
             clear
             autoHeight
             data-seed="logId"
