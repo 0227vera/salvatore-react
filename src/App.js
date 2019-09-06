@@ -1,6 +1,5 @@
 // 在App.js中做相关的一级路由跳转 和初始化store文件
 import React from 'react';
-
 import { connect } from 'react-redux'
 import {closeMsg} from '@/store/notice'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -10,6 +9,7 @@ import AuthRoute from '@/page/authRoute/index'
 import Bossinfo from '@/page/bossInfo/index'
 import WorkerInfo from '@/page/workerInfo/index'
 import DashBorder from '@/page/dashBorder/index'
+import Chat from '@/components/chat/chat'
 import '@/assets/css/reset.css'
 import '@/assets/css/common.scss'
 
@@ -49,6 +49,7 @@ class App extends React.Component {
               <Route path="/register" component={Register}></Route>
               <Route path="/bossinfo" component={Bossinfo}></Route>
               <Route path="/workerinfo" component={WorkerInfo}></Route>
+              <Route path="/chat/:userName" component={Chat}></Route>
               <Route component={DashBorder}></Route>
             </Switch>
           </div>

@@ -2,9 +2,6 @@ const mongoose = require('mongoose')
 // 连接mongo
 const DB_URL = 'mongodb://127.0.0.1:27017/salvatore'
 mongoose.connect(DB_URL)
-mongoose.connection.on('connected', () => {
-  console.log('mongo connect success')
-})
 
 const models = {
   user:{
@@ -19,7 +16,12 @@ const models = {
     money:{ type: String } // 
   },
   chat:{
-
+    chatid:{type:String,require:true},
+    form:{type:String,require:true},
+    to:{type:String,require:true},
+    content:{type:String,require:true,default:''},
+    create_time:{type:String,default:new Date().getTime()},
+    read:{type:Boolean,default:false}
   }
 }
 for (let m in models) {

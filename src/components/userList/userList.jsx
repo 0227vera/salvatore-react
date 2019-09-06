@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
+@withRouter
+class userList extends Component {
+  handleClick(item){
+    this.props.history.push(`/chat/${item.userName}`)
+    console.log(this.props,item)
 
-export default class userList extends Component {
+  }
   render() {
     let data = this.props.data
     return (
@@ -12,7 +18,7 @@ export default class userList extends Component {
           {data.length ? 
             data.map(item => 
               <div  key={item._id}>
-                <Card>
+                <Card onClick={this.handleClick.bind(this,item)}>
                     <Card.Header
                       title={item.userName}
                       thumb={require(`@/assets/img/headImg/icon${item.headImg}.png`)}
@@ -37,6 +43,7 @@ export default class userList extends Component {
     )
   }
 }
+export default userList
 userList.propTypes = {
   data:PropTypes.array
 }
