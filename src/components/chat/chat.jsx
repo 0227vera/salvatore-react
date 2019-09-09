@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List,InputItem } from 'antd-mobile'
+import { List,InputItem,WingBlank } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { getMsgList, sendMsg,recvMsg } from '@/store/chat'
 @connect(
@@ -20,7 +20,6 @@ class chat extends Component {
     this.props.recvMsg()
   }
   handleSubmit() {
-    console.log(this.props.auth)
     this.props.sendMsg({
       from:this.props.auth._id, // 自己
       to:this.props.match.params.userid, // 在地址上的数据
@@ -31,13 +30,25 @@ class chat extends Component {
   render() {
     return (
       <div>
-          <div>
+          <div className="chat">
             {this.props.chat.chatmsg.map(item => {
-              if (item._id === this.props.match.params.userid) { // 这个是对方发的
-                return <div key={item._id}>我给别人：{item.content}</div>
-              } else {
-                return <div key={item._id}>别人给我{item.content}</div>
-              }
+              return item.from === this.props.match.params.userid ?
+              (
+                <div key={item._id} className="chat-left chat-common">
+                  <div className="chat-left-item chat-common-item">
+                    <img src="" alt=""/>
+                    <span>别人给我的：   {item.content}</span>
+                  </div>
+                </div>
+              ) :
+              (
+                <div key={item._id} className="chat-right chat-common">
+                  <div className="chat-right chat-common-item">
+                    <span>我给别人的:   {item.content}</span>
+                    <img src="" alt=""/>
+                  </div>
+                </div>
+              )
             }
               
             )}

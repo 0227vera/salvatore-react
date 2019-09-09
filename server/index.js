@@ -24,12 +24,10 @@ const Chat = model.getModel('chat')
 io.on('connection',socket => {
   // 听客户端的socket
   socket.on('sendmsg',data => {
-    console.log(data)
     const { from, to, content } = data
     const chatid = [from,to].sort().join('_')
-    console.log('---------->', from, to, content)
-    Chat.create({chatid, from, to, content},(err,doc) => {
-      console.log(doc)
+    Chat.create({chatid, from, to, content}, (err,doc) => {
+      console.log(doc._doc)
       io.emit('recvmsg',Object.assign({},doc._doc))
     })
   })

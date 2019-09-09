@@ -24,6 +24,12 @@ userRouter.get('/delete', (req,res) => {
     return res.json({success:true,data:'删除成功'})
   })
 })
+userRouter.get('/delete1', (req,res) => {
+  Chat.remove({},(err,doc) => {
+    if (err) return res.json({success:false,msg:err})
+    return res.json({success:true,data:'删除成功'})
+  })
+})
 
 // list数据获取
 userRouter.get('/list',(req,res) => {

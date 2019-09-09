@@ -34,6 +34,7 @@ function msgList(msgs){
 }
 
 function msgRecv(data) {
+  console.log(data)
   return {type:MSG_RECV,payload:data}
 }
 

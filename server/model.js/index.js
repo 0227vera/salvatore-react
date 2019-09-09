@@ -17,7 +17,7 @@ const models = {
   },
   chat:{
     chatid:{type:String,require:true},
-    form:{type:String,require:true},
+    from:{type:String,require:true},
     to:{type:String,require:true},
     content:{type:String,require:true,default:''},
     create_time:{type:String,default:new Date().getTime()},
