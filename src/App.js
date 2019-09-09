@@ -49,7 +49,7 @@ class App extends React.Component {
               <Route path="/register" component={Register}></Route>
               <Route path="/bossinfo" component={Bossinfo}></Route>
               <Route path="/workerinfo" component={WorkerInfo}></Route>
-              <Route path="/chat/:userName" component={Chat}></Route>
+              <Route path="/chat/:userid" component={Chat}></Route>
               <Route component={DashBorder}></Route>
             </Switch>
           </div>

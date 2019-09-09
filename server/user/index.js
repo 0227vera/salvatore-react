@@ -2,6 +2,7 @@ const express = require('express')
 const model = require('../model.js/index')
 const userRouter = express.Router()
 const User = model.getModel('user')
+const Chat = model.getModel('chat')
 const utility = require('utility')
 let getComplexMd5 = pwd => utility.md5(utility.md5(`qfanjlfh@234#$#_@$*&dfaas24dfa${pwd}_qfanjlataetast2436245asdfas24dfa`))
 
@@ -82,5 +83,20 @@ userRouter.post('/update', (req,res) => {
     })
   })
 })
+
+// 聊天信息列表
+userRouter.get('/getmsglist',(req,res) => {
+  const userid = req.cookies.userid
+  // const {from,to,content} = req.query
+  // 查询多个条件
+  // $or:{from:userid,to:userid}
+  Chat.find({},(err,doc) => {
+    if (err) return res.json({success:false,msg:'数据库错误'})
+    return res.json({success:true,data:doc})
+  })
+})
+
+// 聊天内容的存储
+
 
 module.exports = userRouter

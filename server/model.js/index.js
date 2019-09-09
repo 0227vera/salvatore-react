@@ -21,7 +21,7 @@ const models = {
     to:{type:String,require:true},
     content:{type:String,require:true,default:''},
     create_time:{type:String,default:new Date().getTime()},
-    read:{type:Boolean,default:false}
+    read:{type:Boolean,default:false} // 这个状态只对to有效 
   }
 }
 for (let m in models) {

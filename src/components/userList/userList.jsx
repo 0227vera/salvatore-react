@@ -5,9 +5,7 @@ import { withRouter } from 'react-router-dom'
 @withRouter
 class userList extends Component {
   handleClick(item){
-    this.props.history.push(`/chat/${item.userName}`)
-    console.log(this.props,item)
-
+    this.props.history.push(`/chat/${item._id}`)
   }
   render() {
     let data = this.props.data
