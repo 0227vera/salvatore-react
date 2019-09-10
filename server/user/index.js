@@ -93,12 +93,23 @@ userRouter.post('/update', (req,res) => {
 // 聊天信息列表
 userRouter.get('/getmsglist',(req,res) => {
   const userid = req.cookies.userid
-  // const {from,to,content} = req.query
-  // 查询多个条件
-  // $or:{from:userid,to:userid}
-  Chat.find({},(err,doc) => {
-    if (err) return res.json({success:false,msg:'数据库错误'})
-    return res.json({success:true,data:doc})
+
+  User.find({},(err,doc) => {
+    if (err) return res.json({success:false,msg:'user查询错误'})
+    let users = {}
+    doc.forEach(item => {
+      users[item._id] = {name:item.userName,headImg:item.headImg}
+    })
+
+    // const {from,to,content} = req.query
+    // 查询多个条件
+    // $or:{from:userid,to:userid}
+    // 我发出的或者是我收到的
+    Chat.find({$or:[{from:userid},{to:userid}]},(err,doc) => {
+      if (err) return res.json({success:false,msg:'数据库错误'})
+      return res.json({ success:true, data:{ msgs:doc,users:users } })
+    })
+
   })
 })
 

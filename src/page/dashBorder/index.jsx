@@ -9,12 +9,20 @@ import { connect } from 'react-redux'
 import { NavBar } from 'antd-mobile'
 import Footer from '@/components/footer/footer'
 import { Route } from 'react-router-dom'
+import { getMsgList,recvMsg } from '@/store/chat'
 
 
 @connect(
-  state => state.auth
+  state => state,
+  { getMsgList,recvMsg }
 )
 class index extends Component {
+  componentDidMount(){
+    if (!this.props.chat.chatmsg.length) {
+      this.props.getMsgList()
+      this.props.recvMsg()
+    }
+  }
   render() {
     const navList = [
       {
@@ -22,14 +30,14 @@ class index extends Component {
         text:'求职者', // 底部icon的名称
         title: '求职者列表', // 头部title
         component:Boss, // 中间需要显示的组件
-        hide: this.props.userType === 'worker' // 如果是boss,worker不显示
+        hide: this.props.auth.userType === 'worker' // 如果是boss,worker不显示
       },
       {
         path:'/worker',
         text:'BOSS', 
         title:'BOSS列表', 
         component:Worker, 
-        hide: this.props.userType === 'boss' 
+        hide: this.props.auth.userType === 'boss' 
       },
       {
         path:'/msg',

@@ -12,15 +12,17 @@ const MSG_READ = 'MSG_READ'
 
 let initState = {
   chatmsg:[],
+  users:{},
   unread:0
 }
 
 export function chat(state = initState,action){
   switch(action.type){
     case MSG_LIST :
-      return {...state, chatmsg:action.payload, unread:action.payload.filter(item => !item.read).length}
+      return {...state,users:action.payload.users, chatmsg:action.payload.msgs, unread:action.payload.msgs.filter(item => !item.read&&item.to === action.payload.userid).length}
     case MSG_RECV:
-        return {...state, chatmsg:[...state.chatmsg,action.payload],unread:state.unread+1}
+        const unread = action.payload.to === action.userid ? state.unread+1:state.unread
+        return {...state, chatmsg:[...state.chatmsg,action.payload],unread}
     case MSG_READ :
       return
     default :
@@ -29,13 +31,12 @@ export function chat(state = initState,action){
 }
 
 
-function msgList(msgs){
-  return {type:MSG_LIST,payload:msgs}
+function msgList(msgs,users,userid){
+  return {type:MSG_LIST,payload:{msgs,users,userid}}
 }
 
-function msgRecv(data) {
-  console.log(data)
-  return {type:MSG_RECV,payload:data}
+function msgRecv(data,userid) {
+  return {type:MSG_RECV,payload:data,userid}
 }
 
 export function sendMsg(data) {
@@ -45,17 +46,19 @@ export function sendMsg(data) {
 }
 
 export function recvMsg(){
-  return dispatch => {
+  return (dispatch,getState) => {
     socket.on('recvmsg',data => {
-      dispatch(msgRecv(data))
+      let userid = getState().auth._id
+      dispatch(msgRecv(data,userid))
     })
   }
 }
 export function getMsgList () {
-  return dispatch => {
+  return (dispatch, getState) => {
     services.getMsgList()
     .then(res => {
-      dispatch(msgList(res))
+      let userid = getState().auth._id
+      dispatch(msgList(res.msgs,res.users,userid))
     })
     .catch(err => 
       dispatch(errorMsg({msg:err.msg || '请求出错',msg_type:'error'}))  

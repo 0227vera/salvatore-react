@@ -114,47 +114,35 @@ main{
     }
   }
 }
-.chat{
+#chat{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  height: inherit;
-  box-sizing: border-box;
-  padding: 0 16px;
-  &-common{
-    width: 80%;
-    min-height: 40px;
-    float: left;
-    &-item{
-      display: flex;
-      justify-content: space-around;
-      span{
-        text-align: left;
-        display: block;
-        flex: 1;
-      }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .content{
+    flex:1;
+    padding-bottom: 60px;
+    overflow-x: hidden;
+  }
+  .am-grid-item{
+    .am-grid-icon{
+      display: none;
     }
-    
-    
-    img{
-      width: 30px;
-      height: 30px;
-      display: block;
+    .am-grid-text{
+      margin: 0;
     }
   }
-  &-left{
-
-  }
-  &-right{
-    width: 80%;
-    min-height: 40px;
-    float: right;
-    span{
+  .chat-me{
+    .am-list-content{
       text-align: right;
-      display: block;
     }
-    img{
-      width: 30px;
-      height: 30px;
-      display: block;
+    .am-list-extra{
+      flex-basis:10%;
     }
   }
 }

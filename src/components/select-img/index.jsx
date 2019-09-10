@@ -10,6 +10,11 @@ export default class index extends Component {
       img:''
     }
   }
+  componentDidMount(){
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'))
+    }, 0);
+  }
   onClick(item){
     this.setState({
       active:+item.text,

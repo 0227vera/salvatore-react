@@ -125,49 +125,36 @@ main {
   margin: 0;
 }
 
-.chat {
+#chat {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  height: inherit;
-  box-sizing: border-box;
-  padding: 0 16px;
-}
-
-.chat-common {
-  width: 80%;
-  min-height: 40px;
-  float: left;
-}
-
-.chat-common-item {
+  height: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
 }
 
-.chat-common-item span {
-  text-align: left;
-  display: block;
+#chat .content {
   flex: 1;
+  padding-bottom: 60px;
+  overflow-x: hidden;
 }
 
-.chat-common img {
-  width: 30px;
-  height: 30px;
-  display: block;
+#chat .am-grid-item .am-grid-icon {
+  display: none;
 }
 
-.chat-right {
-  width: 80%;
-  min-height: 40px;
-  float: right;
+#chat .am-grid-item .am-grid-text {
+  margin: 0;
 }
 
-.chat-right span {
+#chat .chat-me .am-list-content {
   text-align: right;
-  display: block;
 }
 
-.chat-right img {
-  width: 30px;
-  height: 30px;
-  display: block;
+#chat .chat-me .am-list-extra {
+  flex-basis: 10%;
 }

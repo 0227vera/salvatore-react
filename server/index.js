@@ -27,7 +27,6 @@ io.on('connection',socket => {
     const { from, to, content } = data
     const chatid = [from,to].sort().join('_')
     Chat.create({chatid, from, to, content}, (err,doc) => {
-      console.log(doc._doc)
       io.emit('recvmsg',Object.assign({},doc._doc))
     })
   })
