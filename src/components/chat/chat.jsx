@@ -29,6 +29,9 @@ class chat extends Component {
     }, 0);
   }
   handleSubmit() {
+    if (!this.state.content) {
+      return
+    }
     this.props.sendMsg({
       from:this.props.auth._id, // 自己
       to:this.props.match.params.userid, // 在地址上的数据
@@ -59,7 +62,7 @@ class chat extends Component {
               {users[userid].name}
             </NavBar>
           </div>
-          <div className="content" style={{paddingBottom:this.state.showEmoji?60+46*6:60}}>
+          <div className="content" style={{paddingBottom:this.state.showEmoji?60+46*4:60}}>
             <WingBlank>
               {chatmsgs.map(item => {
                 let imgUrl = require(`@/assets/img/headImg/icon${users[item.from].headImg}.png`)
