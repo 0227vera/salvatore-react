@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { List,InputItem, WingBlank, NavBar, Icon, Grid } from 'antd-mobile'
 import { connect } from 'react-redux'
-import { getMsgList, sendMsg,recvMsg } from '@/store/chat'
+import { getMsgList, sendMsg,recvMsg,readMsg } from '@/store/chat'
 import { getChatId } from '@/utils/getChatId'
 const emoji = require('emoji')
 @connect(
   state => state,
-  { getMsgList, sendMsg, recvMsg } 
+  { getMsgList, sendMsg, recvMsg,readMsg } 
 )
 class chat extends Component {
   constructor(props){
@@ -22,6 +22,10 @@ class chat extends Component {
       this.props.getMsgList()
       this.props.recvMsg()
     }
+  }
+  componentWillUnmount(){ // 当前组件销毁时候
+    let from = this.props.match.params.userid
+    this.props.readMsg(from)
   }
   fixCarousel(){
     setTimeout(() => {

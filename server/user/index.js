@@ -100,7 +100,6 @@ userRouter.get('/getmsglist',(req,res) => {
     doc.forEach(item => {
       users[item._id] = {name:item.userName,headImg:item.headImg}
     })
-
     // const {from,to,content} = req.query
     // 查询多个条件
     // $or:{from:userid,to:userid}
@@ -113,7 +112,22 @@ userRouter.get('/getmsglist',(req,res) => {
   })
 })
 
-// 聊天内容的存储
+// 已读数据
+userRouter.post('/readmsg',(req,res) => {
+  const userid = req.cookies.userid
+  const { from } = req.body
+  Chat.update(
+    { from,to:userid },
+    { '$set':{read:true} },
+    { 'multi':true }, // 默认只修改查询到的第一条数据，添加multi表示查询修改所有查询的数据
+    (err,doc) => {
+    if (err) res.json({success:false,msg:'修改失败'})
+    res.json({success:true,data:doc.nModified})
+    console.log('------------>', doc)
+    // { n: 1, nModified: 1, ok: 1 } // n:一共有几条数据 nModified:修改几条, ok：操作成功
+  })
+
+})
 
 
 module.exports = userRouter

@@ -24,7 +24,7 @@ export function chat(state = initState,action){
         const unread = action.payload.to === action.userid ? state.unread+1:state.unread
         return {...state, chatmsg:[...state.chatmsg,action.payload],unread}
     case MSG_READ :
-      return
+      return {...state,chatmsg:state.chatmsg.map(item => ({...item,read: action.payload.from === item.from?true:item.read})), unread:state.unread - action.payload.num}
     default :
     return state
   }
@@ -39,12 +39,17 @@ function msgRecv(data,userid) {
   return {type:MSG_RECV,payload:data,userid}
 }
 
+function msgRead(data){
+  return {type:MSG_READ,payload:data}
+}
+
+// 消息发送
 export function sendMsg(data) {
   return dispatch => {
     socket.emit('sendmsg',data)
   }
 }
-
+// 消息接收
 export function recvMsg(){
   return (dispatch,getState) => {
     socket.on('recvmsg',data => {
@@ -53,6 +58,7 @@ export function recvMsg(){
     })
   }
 }
+// 消息总数获取
 export function getMsgList () {
   return (dispatch, getState) => {
     services.getMsgList()
@@ -62,6 +68,21 @@ export function getMsgList () {
     })
     .catch(err => 
       dispatch(errorMsg({msg:err.msg || '请求出错',msg_type:'error'}))  
+    )
+  }
+}
+// 消息已读
+export function readMsg(from){
+  return (dispatch,getState) => {
+    services.readMsg({from})
+    .then(res => {
+      let userid = getState().auth._id
+      dispatch(msgRead({from,userid,num:res}))
+    })
+    .catch(
+      dispatch(err => 
+        dispatch(errorMsg({msg:err.msg || '请求出错',msg_type:'error'})) 
+      )
     )
   }
 }

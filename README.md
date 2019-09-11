@@ -64,6 +64,8 @@ Link,跳转使用
 
 ## Socket.io
 
+`npm i socket.io -S`
+
 ## vue和react快速模板生成
 
 1. vue

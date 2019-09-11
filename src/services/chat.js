@@ -7,5 +7,13 @@ export default {
       name:'获取聊天列表的数据',
       params
     })
+  },
+  readMsg (data) {
+    return Axios ({
+      method:'post',
+      url:'/user/readmsg',
+      name:'消息已读',
+      data
+    })
   }
 }
